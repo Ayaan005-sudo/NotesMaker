@@ -72,8 +72,8 @@ await newToken.save();
 
 res.cookie("refreshToken",RefreshToken ,{
    httpOnly:true,
-   secure:false,
-   sameSite:"lax",
+   secure:true,
+   sameSite:"none",
    maxAge:7*24*60*60*1000
 });
 
@@ -125,8 +125,8 @@ expiresIn:"7d"
 
 res.cookie("refreshToken",RefreshToken ,{
    httpOnly:true,
-   secure:false,
-   sameSite:"lax",
+   secure:true,
+   sameSite:"none",
    maxAge:7*24*60*60*1000
 });
 
@@ -200,8 +200,8 @@ token:refreshToken,
 
 res.cookie("refreshToken",refreshToken ,{
    httpOnly:true,
-   secure:false,
-   sameSite:"lax",
+   secure:true,
+   sameSite:"none",
    maxAge:7*24*60*60*1000
 });
 console.log("gooing to calll suucess");
