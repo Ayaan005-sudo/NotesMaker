@@ -14,6 +14,8 @@ const protect =require("../middleware/protected.js");
 const {TokenModel}=require("../models/session.js");
 const{NoteModel}=require("../models/notes.js");
 const cors=require("cors");
+const signupSchemaValid=require("../validation/authvalidation.js");
+
 app.use(cors({
   origin: "http://localhost:5173", // frontend ka origin
   credentials: true                // cookies allow karne ke liye
@@ -31,6 +33,10 @@ main()
 
 
 const Signup=async(req,res)=>{
+     const { error } = signupSchemaValid.validate(req.body);
+    if (error) {
+      return res.status(400).json({ message: error.details[0].message });
+    }
      let {name,email,password}=req.body;
  try{
    if(!name||!email||!password){
@@ -161,6 +167,10 @@ await TokenModel.create({
 
  const login=async(req,res)=>{
     try{
+         const { error } = signupSchemaValid.validate(req.body);
+    if (error) {
+      return res.status(400).json({ message: error.details[0].message });
+    }
    let {name,email,password}=req.body;
 console.log(req.body);
    const user=await Usermodel.findOne({email});
