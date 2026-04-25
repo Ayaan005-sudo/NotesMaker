@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import NotesForm from './NotesForm';
 import { logout,login } from '../ReduxStore/AuthSlice';
 import { apiFetch } from '../../utils/apiFetch';
-
+import API_URL from '../../utils/api';
 
 function Dashboard() {
   const accessToken = useSelector((state) => state.auth.accessToken);
@@ -20,7 +20,7 @@ const dispatch=useDispatch();
     try {
       
       await apiFetch(
-        `http://localhost:3000/notes/${id}`, 
+        `${API_URL}/notes/${id}`, 
         dispatch,
         accessToken,
         "DELETE",
@@ -36,7 +36,7 @@ const dispatch=useDispatch();
   }
 
   async function logouthandle(){
-let res=await fetch("http://localhost:3000/logout",{
+let res=await fetch(`${API_URL}/logout`,{
     method:"POST",
     credentials:"include"
 });
@@ -50,7 +50,7 @@ if(res.ok){
     async function getNotes() {
       try {
         const res = await apiFetch(
-  "http://localhost:3000/notes",
+  `${API_URL}/notes`,
   dispatch,
   accessToken,
   "GET",

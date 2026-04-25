@@ -1,3 +1,4 @@
+import API_URL from "./api";
 export const apiFetch=async(url,dispatch,token,meth,data,login,logout)=>{
      const options = {
     method: meth,
@@ -16,7 +17,7 @@ export const apiFetch=async(url,dispatch,token,meth,data,login,logout)=>{
   let res = await fetch(url, options);
 
     if(res.status===401){
-        const refershRes=await fetch("https://localhost:3000/refreshToken",{
+        const refershRes=await fetch(`${API_URL}/refreshToken`,{
             method:"GET",
             headers:{
                 "Content-Type":"application/json",

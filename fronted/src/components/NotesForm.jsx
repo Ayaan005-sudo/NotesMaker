@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { apiFetch } from '../../utils/apiFetch';
 import { login,logout } from '../ReduxStore/AuthSlice';
-
+import API_URL from '../../utils/api';
 function NotesForm({ setIsshow }) {
   const {
     register,
@@ -18,7 +18,7 @@ const dispatch=useDispatch();
     try {
       
       let res = await apiFetch(
-        "http://localhost:3000/addNotes", 
+        `${API_URL}/addNotes`, 
         dispatch,
         accessToken,
         "POST",

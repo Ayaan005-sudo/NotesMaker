@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../ReduxStore/AuthSlice';
 import { useNavigate } from 'react-router-dom';
 import { Link } from "react-router-dom";
-
+import API_URL from '../../utils/api';
 function LoginForm() {
   const navigate = useNavigate();
   const {
@@ -17,7 +17,7 @@ function LoginForm() {
 
   const loginHandler = async (data) => {
     try {
-      const res = await fetch("http://localhost:3000/login", {
+      const res = await fetch(`${API_URL}/login`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" },

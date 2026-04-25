@@ -8,6 +8,7 @@ import Dashboard from './Dashboard';
 import { login,logout } from '../ReduxStore/AuthSlice';
 import { setCheckingAuth } from '../ReduxStore/AuthSlice';
 import LoginForm from './LoginForm';
+import API_URL from '../../utils/api';
 function Home() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
@@ -16,7 +17,7 @@ function Home() {
     const checkUser = async () => {
       console.log("startup is runnung"); 
       try {
-        const res = await fetch("http://localhost:3000/refreshToken", {
+        const res = await fetch(`${API_URL}/refreshToken`, {
           credentials: "include"
         });
 
