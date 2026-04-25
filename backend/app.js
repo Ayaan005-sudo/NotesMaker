@@ -13,10 +13,22 @@ const {TokenModel}=require("./models/session.js");
 const{NoteModel}=require("./models/notes.js");
 const cors=require("cors");
 const  router  = require("./Routes/authrouter.js");
+const allowedOrigins = [
+  "http://localhost:5173", 
+  "https://notes-maker-khaki.vercel.app"
+];
+
 app.use(cors({
-  origin: "http://localhost:5173", // frontend ka origin
-  credentials: true                // cookies allow karne ke liye
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true
 }));
+
 app.use(express.json());
 app.use(cookieParser());
 app.use("/",router);
